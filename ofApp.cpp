@@ -451,7 +451,7 @@ void ofApp::SendUdp_FrameData()
 	********************/
 	string message="";
 	
-	message += "/Golem/SkeltonData";
+	message += "/Golem/SkeletonData";
 	message += "<p>";
 	
 	/********************
@@ -483,7 +483,7 @@ void ofApp::SendUdp_FrameData()
 	for(int i=0; i < str_vals.size(); i++){
 		message += str_vals[i];	message += "|";
 	}
-	message += ofToString(Next_FrameId_of_MotionData - 1);
+	// message += ofToString(Next_FrameId_of_MotionData - 1);
 	
 	udpConnection.Send(message.c_str(),message.length());
 }
@@ -576,11 +576,6 @@ void ofApp::keyPressed(int key){
 		case 'g':
 			State = STATE__TRACKING_NOOSC_OUT;
 			printf("> State->STATE__TRACKING_NOOSC_OUT\n");
-			break;
-			
-		case 't':
-			State = STATE__TEST;
-			printf("> State->STATE__TEST\n");
 			break;
 			
 		case ' ':
