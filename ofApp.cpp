@@ -18,6 +18,7 @@ ofApp::ofApp()
 , t_StartCalib_2(0)
 , Next_FrameId_of_MotionData(0)
 , b_1st(true)
+, b_go(false)
 {
 	font.load("RictyDiminished-Regular.ttf", 20, true, true, true);
 	
@@ -196,7 +197,7 @@ void ofApp::SendOsc_SensorStatus()
 {
 	/********************
 	********************/
-	if(2.0 < now - t_Enter_WaitAllSensorOn){
+	if(b_go && 2.0 < now - t_Enter_WaitAllSensorOn){
 		AllSensor_Ready();
 		
 		if(State == STATE__WAIT_ALL_SENSOR_ON){
@@ -226,6 +227,7 @@ void ofApp::ResTo_CloseGolem()
 	State = STATE__WAIT_ALL_SENSOR_ON;
 	AllSensor_Booting();
 	t_Enter_WaitAllSensorOn = now;
+	b_go = false;
 	
 	printf("> State->STATE__WAIT_ALL_SENSOR_ON\n");
 }
@@ -581,6 +583,10 @@ void ofApp::keyPressed(int key){
 		case ' ':
 			State = STATE__TRACKING_OSC_OUT;
 			printf("> State->STATE__TRACKING_OSC_OUT\n");
+			break;
+			
+		case '0':
+			b_go = true;
 			break;
 	}
 }
