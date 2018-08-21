@@ -101,7 +101,8 @@ void ofApp::update(){
 		Osc.OscReceive.getNextMessage(&m_receive);
 		
 		if(m_receive.getAddress() == "/Message"){
-			int MessageId = m_receive.getArgAsInt(0);
+			// int MessageId = m_receive.getArgAsInt(0);
+			int MessageId = int(m_receive.getArgAsFloat(0));
 			switch(MessageId){
 				case MESSAGE_IN::GET_STATUS:
 					// printf("> got message = GET_STATUS\n"); // too often to printf.
