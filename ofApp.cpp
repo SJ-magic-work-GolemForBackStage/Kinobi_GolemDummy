@@ -83,7 +83,8 @@ void ofApp::update(){
 		b_1st = false;
 		
 		while(Osc.OscReceive.hasWaitingMessages()){
-			// none.
+			ofxOscMessage m_receive;
+			Osc.OscReceive.getNextMessage(&m_receive);
 		}
 
 		return;
@@ -562,7 +563,7 @@ void ofApp::draw(){
 	char buf[BUFSIZE_S];
 	sprintf(buf, "%05d:%6.2f", Next_FrameId_of_MotionData - 1, ofGetFrameRate());
 	
-	font.drawStringAsShapes(buf, 10, 30);
+	font.drawString(buf, 10, 30);
 }
 
 //--------------------------------------------------------------
